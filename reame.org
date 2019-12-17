@@ -1,0 +1,10 @@
+* What is this?
+This plan to be emacs extension to use todoist in org.
+
+* remaining tasks
+** TODO OAuth
+** TODO sync org data to todoist
+** TODO close todoist tasks when change status
+
+* reference
+- [[https://developer.todoist.com/sync/v8/?shell#overview][todoist API document]]
