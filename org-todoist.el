@@ -1,4 +1,4 @@
-;;; org-todoist.el -- Org sync with todoist
+;;; org-todoist.el --- Org sync with todoist
 
 ;; Author: byplayer <byplayer100@gmail.com>
 ;; URL: https://github.com/byplayer/org-todoist
