@@ -5,6 +5,8 @@ This plan to be emacs extension to use todoist in org.
 ** TODO OAuth
 ** TODO sync org data to todoist
 ** TODO close todoist tasks when change status
+** TODO sync tags
+** TODO sync projects
 
 * reference
 - [[https://developer.todoist.com/sync/v8/?shell#overview][todoist API document]]
