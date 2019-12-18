@@ -87,7 +87,7 @@ Using TOKEN to sync todo from todoist."
       :success (cl-function
                 (lambda (&key data &allow-other-keys)
                   (org-todoist-write-data data)
-                  (message "fetch todoist tasks."))))
+                  (message "fetch todoist tasks was done."))))
     ))
 
 (defun org-todoist-write-data (result_data)
