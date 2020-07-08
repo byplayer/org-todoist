@@ -2,8 +2,8 @@
 
 ;; Author: byplayer <byplayer100@gmail.com>
 ;; URL: https://github.com/byplayer/org-todoist
-;; Package-Version: 20191217.1
-;; Version: 0.1
+;; Package-Version: 20200708.1
+;; Version: 0.2
 ;; Maintainer: byplayer <byplayer100@gmail.com>
 ;; Copyright (C) :2019 byplayer all rights reserved.
 ;; Package-Requires: ((request-deferred "20181129") (emacs "26"))
@@ -18,6 +18,7 @@
 ;;
 ;;; Changelog:
 ;; 2019-12-17 Implement to fetch todoist data
+;; 2020-07-08 Fix scheduled date issue when time isn't set on todoist
 
 (require 'request-deferred)
 
@@ -174,7 +175,7 @@ LOCAL-TZ is user local timezone(+0800 etc)."
   (let ((due-date))
     (if due
         (if (= 10 (length due))
-            due
+            (format "<%s>" due)
           (progn
             (setq due-date (append (timezone-parse-date due) nil))
             (if (nth 4 due-date)
