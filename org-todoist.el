@@ -95,11 +95,7 @@ Using TOKEN to sync todo from todoist."
 RESULT_DATA is todoist API result."
   (let
       ((items '())
-       (due nil)
-       (local-tz (org-todoist-dig result_data '(user tz_info gmt_string))))
-    (unless local-tz
-      (setq local-tz "+0000"))
-    (message "local-tz:%s" local-tz)
+       (due nil))
     (with-temp-file org-todoist-agenda-file
       (cl-loop for item in (append (alist-get 'items result_data) nil) do
                (insert (format org-todoist-title-format (alist-get 'content item)))
@@ -109,8 +105,7 @@ RESULT_DATA is todoist API result."
                    (progn
                      (insert (format "SCHEDULED: %s"
                                      (org-todoist-convert-due-date-to-user-tz
-                                      (alist-get 'date due)
-                                      local-tz)))
+                                      (alist-get 'date due))))
                      (newline)))
                (insert ":PROPERTIES:")
                (newline)
@@ -167,7 +162,7 @@ The time_str is expected HH:MM:SS"
               (string-to-number (nth 1 tz-data))
               (string-to-number (nth 2 tz-data))))))
 
-(defun org-todoist-convert-due-date-to-user-tz (due local-tz)
+(defun org-todoist-convert-due-date-to-user-tz (due)
   "Convert todoist due time to user timezone time.
 DUE is the value of due date.
 LOCAL-TZ is user local timezone(+0800 etc)."
@@ -180,7 +175,7 @@ LOCAL-TZ is user local timezone(+0800 etc)."
             (if (nth 4 due-date)
                 (progn
                   (setq due-date
-                        (append (timezone-fix-time due nil local-tz) nil))
+                        (append (timezone-fix-time due nil nil) nil))
                   (format "<%04d-%02d-%02d %02d:%02d>"
                           (nth 0 due-date)
                           (nth 1 due-date)
